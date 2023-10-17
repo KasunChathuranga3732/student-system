@@ -1,0 +1,33 @@
+# Ignore media and static files
+**/media/
+**/static/
+
+# Ignore log and temporary files
+**/*.log
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.swp
+**/*.bak
+**/*.tmp
+
+# Ignore IDE and editor-specific files
+**/.vscode/
+**/.idea/
+**/*.sublime-project
+**/*.sublime-workspace
+
+# Ignore OS generated files
+**/.DS_Store
+**/Thumbs.db
+
+
+# Compiled output
+**/dist
+**/tmp
+**/out-tsc
+**/bazel-out
+
+# Node
+**/node_modules
+**/npm-debug.log
