@@ -54,3 +54,92 @@ def class_list(request):
 def extract_number(class_name):
     return int(class_name.split()[1])
 
+
+def assessment_area_list(request):
+    global assess_areas
+    unique_assessment = data['Assessment Areas'].unique()
+    assess_areas = {asses: f"AA{i + 1}" for i, asses in enumerate(unique_assessment)}
+    
+    return JsonResponse(assess_areas)
+
+
+def answer_list(request):
+    global answers
+    unique_answer = data['Answers'].unique()
+    answers = {ans: f"Ans{i + 1}" for i, ans in enumerate(sorted(unique_answer))}
+    
+    return JsonResponse(answers)
+
+
+def correct_answer_list(request):
+    global correct_answers
+    unique_correct_answer = data['Correct Answers'].unique()
+    correct_answers = {cor: f"CorAns{i + 1}" for i, cor in enumerate(sorted(unique_correct_answer))}
+    
+    return JsonResponse(correct_answers)
+
+
+def category_list(request):
+    global categories
+    unique_catagory = data['strength_status'].unique()
+    categories = {cat: f"CAT{i + 1}" for i, cat in enumerate(sorted(unique_catagory))}
+    
+    return JsonResponse(categories)
+
+
+def award_list(request):
+    global awards
+    unique_award = data['award'].unique()
+    awards = {awr: f"AWD{i + 1}" for i, awr in enumerate(unique_award)}
+    
+    return JsonResponse(awards)
+
+
+# def subject_list(data):
+#     unique_subject = data.drop_duplicates(subset=['Subject'], keep='first')
+#     print(unique_subject)
+#     subjects = []
+
+#     for i, row in unique_subject.iterrows():
+#         subject = [f"Sub{len(subjects) + 1}", row['Subject'], row['average_score']]
+#         subjects.append(subject)
+
+#     return subjects
+
+
+def subject_list(request):
+    global subjects
+    unique_subject = data['Subject'].unique()
+    subjects = {sub: f"Sub{i + 1}" for i, sub in enumerate(unique_subject)}
+    
+    return JsonResponse(subjects)
+
+
+def summary_list(data, schools:dict, assess_areas:dict, awards:dict, classes:dict, subjects:dict, 
+                 catagories:dict, answers:dict, correct_answers:dict):
+    results = []
+    for index, row in data.iterrows():
+        school = schools.get(row['school_name'])
+        sydney_participants = row['sydney_participants']
+        sydney_percentile = row['sydney_percentile']
+        assessment_area_id = assess_areas.get(row['Assessment Areas'])
+        award_id = awards.get(row['award'])
+        class_id = classes.get(row['Class'])
+        correct_answer_percentage_per_class = row['correct_answer_percentage_per_class']
+        correct_answer = row['Correct Answers']
+        student_id = row['StudentID']
+        participant = row['participant']
+        student_score = row['student_score']
+        subject_id = subjects.get(row['Subject'])
+        catagory_id = catagories.get(row['strength_status'])
+        year_level_name = row['Year Level']
+        answer_id = answers.get(row['Answers'])
+        correct_answer_id = correct_answers.get(row['Correct Answers'])
+
+        student = [school, sydney_participants, sydney_percentile, assessment_area_id, award_id,
+                   class_id, correct_answer_percentage_per_class, correct_answer, student_id, participant,
+                   student_score, subject_id, catagory_id, year_level_name, answer_id, correct_answer_id]
+        
+        results.append(student)
+    
+    return results

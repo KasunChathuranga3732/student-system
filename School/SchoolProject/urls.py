@@ -23,4 +23,11 @@ urlpatterns = [
     path('schools/', views.school_list, name='Schools'),
     path('classes/', views.class_list, name='Classes'),
     path('students/', views.student_list, name='Students'),
+    path('assess-areas/', views.assessment_area_list, name='Assess'),
+    path('answers/', views.answer_list, name='Answers'),
+    path('cor-answers/', views.correct_answer_list, name='CAnswers'),
+    path('categories/', views.category_list, name='Categories'),
+    path('awards/', views.award_list, name='Awards'),
+    path('subjects/', views.subject_list, name='Subjects'),
+    path('summary/', views.summary_list, name='Summary'),
 ]
