@@ -1,0 +1,220 @@
+<main>
+  <div>
+    <h1 class="text-center">Student System</h1>
+    <button class="btn btn-primary mx-3" routerLink="/home">Back</button>
+  </div>
+  <div class="w-100 d-flex border-bottom">
+    <section class="w-50 d-flex align-items-center flex-column">
+      <div class="w-75 mt-2">
+        <h4 class="text-center">School</h4>
+        <table class="table table-striped table-hover table-bordered">
+          <thead class="table-info">
+          <tr>
+            <th class="text-center">Id</th>
+            <th class="text-center">Name</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let scl of Object.keys(schoolList)">
+            <td class="text-center">{{schoolList[scl]}}</td>
+            <td class="text-center">{{scl}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="w-75 mt-5">
+        <h4 class="text-center">Assessment Areas</h4>
+        <table class="table table-striped table-hover table-bordered">
+          <thead class="table-info">
+          <tr>
+            <th class="text-center">Id</th>
+            <th class="text-center">Name</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let assess of Object.keys(assessmentAreaList)">
+            <td class="text-center">{{assessmentAreaList[assess]}}</td>
+            <td class="text-center">{{assess}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="w-75 mt-5">
+        <h4 class="text-center">Categories</h4>
+        <table class="table table-striped table-hover table-bordered">
+          <thead class="table-info">
+          <tr>
+            <th class="text-center">Id</th>
+            <th class="text-center">Category</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let cate of Object.keys(categoryList)">
+            <td class="text-center">{{categoryList[cate]}}</td>
+            <td class="text-center">{{cate}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="w-75 mt-5">
+        <h4 class="text-center">Awards</h4>
+        <table class="table table-striped table-hover table-bordered">
+          <thead class="table-info">
+          <tr>
+            <th class="text-center">Id</th>
+            <th class="text-center">Name</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let awd of Object.keys(awardList)">
+            <td class="text-center">{{awardList[awd]}}</td>
+            <td class="text-center">{{awd}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class="w-50 d-flex align-items-center flex-column">
+      <div class="w-75 mt-2 mb-2">
+        <h4 class="text-center">Class</h4>
+        <table class="table table-striped table-hover table-bordered">
+          <thead class="table-info">
+          <tr>
+            <th class="text-center">Class Id</th>
+            <th class="text-center">Class</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let cls of Object.keys(classList)">
+            <td class="text-center">{{classList[cls]}}</td>
+            <td class="text-center">{{cls}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="w-75 mt-5">
+        <h4 class="text-center">Answers</h4>
+        <table class="table table-striped table-hover table-bordered">
+          <thead class="table-info">
+          <tr>
+            <th class="text-center">Id</th>
+            <th class="text-center">Answer</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let ans of Object.keys(answerList)">
+            <td class="text-center">{{answerList[ans]}}</td>
+            <td class="text-center">{{ans}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="w-75 mt-5">
+        <h4 class="text-center">Correct Answers</h4>
+        <table class="table table-striped table-hover table-bordered">
+          <thead class="table-info">
+          <tr>
+            <th class="text-center">Id</th>
+            <th class="text-center">Answer</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let ans of Object.keys(correctAnswerList)">
+            <td class="text-center">{{correctAnswerList[ans]}}</td>
+            <td class="text-center">{{ans}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="w-75 mt-5">
+        <h4 class="text-center">Subjects</h4>
+        <table class="table table-striped table-hover table-bordered">
+          <thead class="table-info">
+          <tr>
+            <th class="text-center">Id</th>
+            <th class="text-center">Subject</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let sub of Object.keys(subjectList)">
+            <td class="text-center">{{subjectList[sub]}}</td>
+            <td class="text-center">{{sub}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+  <div class="d-flex justify-content-center border-bottom pb-3">
+    <div class="final-tbl w-75 mt-5">
+      <h4 class="text-center">Students</h4>
+      <table class="table table-striped table-hover table-bordered">
+        <thead class="table-info sticky-top">
+        <tr>
+          <th class="text-center">Id</th>
+          <th class="text-center">Full Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let student of Object.keys(studentList)">
+          <td class="text-center">{{student}}</td>
+          <td class="text-center">{{studentList[student]}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="d-flex flex-column align-items-center border-bottom">
+    <h4 class="text-center mt-3">Summary</h4>
+    <div class="final-tbl w-100 mt-2 p-3 pt-0">
+      <table class="table table-striped table-hover table-bordered">
+        <thead class="table-info">
+          <tr class="sticky-top">
+            <th class="text-center">School</th>
+            <th class="text-center">Sydney Participants</th>
+            <th class="text-center">Sydney Percentile</th>
+            <th class="text-center">Assessment Area Id</th>
+            <th class="text-center">Award Id</th>
+            <th class="text-center">Class Id</th>
+            <th class="text-center">Correct Answer Percentage Per Class</th>
+            <th class="text-center">Correct Answer</th>
+            <th class="text-center">Student Id</th>
+            <th class="text-center">Participant</th>
+            <th class="text-center">Student Score</th>
+            <th class="text-center">Subject Id</th>
+            <th class="text-center">Category Id</th>
+            <th class="text-center">Year Level Name</th>
+            <th class="text-center">Answer Id</th>
+            <th class="text-center">Correct Answer Id</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of summaryList">
+            <td class="text-center">{{row[0]}}</td>
+            <td class="text-center">{{row[1]}}</td>
+            <td class="text-center">{{row[2]}}</td>
+            <td class="text-center">{{row[3]}}</td>
+            <td class="text-center">{{row[4]}}</td>
+            <td class="text-center">{{row[5]}}</td>
+            <td class="text-center">{{row[6]}}</td>
+            <td class="text-center">{{row[7]}}</td>
+            <td class="text-center">{{row[8]}}</td>
+            <td class="text-center">{{row[9]}}</td>
+            <td class="text-center">{{row[10]}}</td>
+            <td class="text-center">{{row[11]}}</td>
+            <td class="text-center">{{row[12]}}</td>
+            <td class="text-center">{{row[13]}}</td>
+            <td class="text-center">{{row[14]}}</td>
+            <td class="text-center">{{row[15]}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="d-flex gap-4 mb-3 mt-2">
+      <button *ngIf="flag" class="btn btn-primary btn-width" [disabled]="pageNumber == 1" (click)="pageNumberDecrement()">Previous</button>
+      <div class="number">{{pageNumber}}</div>
+      <button *ngIf="flag" class="btn btn-primary btn-width" [disabled]="pageNumber >= 160" (click)="pageNumberIncrement()">Next</button>
+    </div>
+  </div>
+</main>
+
