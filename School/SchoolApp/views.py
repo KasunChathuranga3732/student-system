@@ -4,10 +4,11 @@ import numpy as np
 from multiprocessing import Pool
 from django.http import HttpResponse
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 
 data = pd.DataFrame
-data = pd.read_csv('/home/kasun/Documents/assessment/Interview_dataset/Ganison_dataset/Ganison_dataset_5.csv')
+# data = pd.read_csv('/home/kasun/Documents/assessment/Interview_dataset/Ganison_dataset/Ganison_dataset_5.csv')
 
 schools:dict
 classes:dict
@@ -18,14 +19,21 @@ categories:dict
 awards:dict
 subjects:dict
 
+@csrf_exempt
 def read_csv(request):
     global data
-    data = pd.read_csv('/home/kasun/Documents/assessment/Interview_dataset/Ganison_dataset/Ganison_dataset_2.csv')
 
-    # print(len(data))
+    if request.method == 'POST' and request.FILES['csvFile']:
+        csv_file = request.FILES['csvFile']
 
-    response = HttpResponse(status=201)
-    return response
+        data = pd.read_csv(csv_file)
+
+        return JsonResponse({'message': 'CSV file uploaded and processed successfully'})
+
+
+
+
+    return JsonResponse({'error': 'Invalid request or file not provided'}, status=400)
 
 
 def school_list(request):
