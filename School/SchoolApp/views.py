@@ -7,7 +7,7 @@ from django.http import JsonResponse
 
 
 data = pd.DataFrame
-data = pd.read_csv('/home/kasun/Documents/assessment/Interview_dataset/Ganison_dataset/Ganison_dataset_1.csv')
+data = pd.read_csv('/home/kasun/Documents/assessment/Interview_dataset/Ganison_dataset/Ganison_dataset_5.csv')
 
 schools:dict
 classes:dict
@@ -74,7 +74,11 @@ def answer_list(request):
 def correct_answer_list(request):
     global correct_answers
     unique_correct_answer = data['Correct Answers'].unique()
-    correct_answers = {cor: f"CorAns{i + 1}" for i, cor in enumerate(sorted(unique_correct_answer))}
+    newList = sorted(unique_correct_answer.tolist())
+    if newList[0] == '?':
+        newList.pop(0)
+        newList.append('?')
+    correct_answers = {cor: f"CorAns{i + 1}" for i, cor in enumerate(newList)}
     
     return JsonResponse(correct_answers)
 
@@ -115,10 +119,19 @@ def subject_list(request):
     return JsonResponse(subjects)
 
 
-def summary_list(data, schools:dict, assess_areas:dict, awards:dict, classes:dict, subjects:dict, 
-                 catagories:dict, answers:dict, correct_answers:dict):
+def summary_list(request, summaryId):
+    result = []
+    begin = (summaryId - 1) * 5000
+    end = begin + 5000
+    dataList = data.iloc[begin:end]
+    result = summary_process(dataList)
+    
+    return JsonResponse(result, safe=False)
+
+
+def summary_process(dataList):
     results = []
-    for index, row in data.iterrows():
+    for index, row in dataList.iterrows():
         school = schools.get(row['school_name'])
         sydney_participants = row['sydney_participants']
         sydney_percentile = row['sydney_percentile']
@@ -131,14 +144,14 @@ def summary_list(data, schools:dict, assess_areas:dict, awards:dict, classes:dic
         participant = row['participant']
         student_score = row['student_score']
         subject_id = subjects.get(row['Subject'])
-        catagory_id = catagories.get(row['strength_status'])
+        category_id = categories.get(row['strength_status'])
         year_level_name = row['Year Level']
         answer_id = answers.get(row['Answers'])
         correct_answer_id = correct_answers.get(row['Correct Answers'])
 
         student = [school, sydney_participants, sydney_percentile, assessment_area_id, award_id,
                    class_id, correct_answer_percentage_per_class, correct_answer, student_id, participant,
-                   student_score, subject_id, catagory_id, year_level_name, answer_id, correct_answer_id]
+                   student_score, subject_id, category_id, year_level_name, answer_id, correct_answer_id]
         
         results.append(student)
     

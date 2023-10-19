@@ -29,5 +29,5 @@ urlpatterns = [
     path('categories/', views.category_list, name='Categories'),
     path('awards/', views.award_list, name='Awards'),
     path('subjects/', views.subject_list, name='Subjects'),
-    path('summary/', views.summary_list, name='Summary'),
+    path('summary/<int:summaryId>', views.summary_list, name='Summary'),
 ]
