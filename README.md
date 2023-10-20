@@ -28,7 +28,7 @@ To get started with the Student System Application, follow these steps:
 4. Access the Application
     - Angular front end: Open your web browser and go to http://localhost:4200.
 5. After select your csv file, you can see "Upload" button. Then click it.
-6. After upload complete, you can see "Show Tables" button. Then click it.
+6. After complete uploading, you can see "Show Tables" button. Then click it.
 
 ## Stopping the Application
 To stop the application and remove the containers, run: docker-compose down
