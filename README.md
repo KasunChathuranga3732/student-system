@@ -8,31 +8,30 @@ This is a web application for manipulating and displaying CSV file data in the t
 - Python (Django, Pandas)
 - Angular (Bootstrap)
 
+
+## Prerequisites
+
+- Node.js and npm for the Angular front end
+- Python and Django for the back end
+- Docker and Docker Compose for running the application in containers
+
+
 ## Getting Started
 
 To get started with the Student System Application, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/KasunChathuranga3732/student-system.git`
+1. Clone the repository 
+    - `git clone https://github.com/KasunChathuranga3732/student-system.git`
+    - cd your-repo
+2. Build the Docker Images: docker-compose build
+3. Start the Application:  docker-compose up
+4. Access the Application
+    - Angular front end: Open your web browser and go to http://localhost:4200.
+5. After select your csv file, you can see "Upload" button. Then click it.
+6. After upload complete, you can see "Show Tables" button. Then click it.
 
-#### For Linux
- - Open Terminal within the School folder
- - Run following commands
-	- source Env/bin/activate
- 	- python manage.py runserver
- - Open Terminal within the student-system folder
- - Run following commands
- 	- pnpm i
- 	- ng serve
- 
- #### For Windows
- - Open CMD within the School folder
- - Run following commands
-	- source Env\bin\activate
- 	- python manage.py runserver
- - Open CMD within the student-system folder
- - Run following commands
- 	- pnpm i
- 	- ng serve
+## Stopping the Application
+To stop the application and remove the containers, run: docker-compose down
 
 ## License
 

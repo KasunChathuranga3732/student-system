@@ -1,0 +1,10 @@
+asgiref==3.7.2
+Django==3.2
+django-cors-headers==4.3.0
+djangorestframework==3.14.0
+numpy==1.26.1
+pandas==2.1.1
+python-dateutil==2.8.2
+sqlparse==0.4.4
+typing_extensions==4.8.0
+tzdata==2023.3
