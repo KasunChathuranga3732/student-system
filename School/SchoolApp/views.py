@@ -1,4 +1,3 @@
-from django.shortcuts import render
 import pandas as pd
 import numpy as np
 from multiprocessing import Pool
@@ -8,7 +7,6 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 data = pd.DataFrame
-# data = pd.read_csv('/home/kasun/Documents/assessment/Interview_dataset/Ganison_dataset/Ganison_dataset_5.csv')
 
 schools:dict
 classes:dict
@@ -18,17 +16,20 @@ correct_answers:dict
 categories:dict
 awards:dict
 subjects:dict
+rowCount:int
 
 @csrf_exempt
 def read_csv(request):
     global data
+    global rowCount
 
     if request.method == 'POST' and request.FILES['csvFile']:
         csv_file = request.FILES['csvFile']
 
         data = pd.read_csv(csv_file)
+        rowCount = data.shape[0]
 
-        return JsonResponse({'message': 'CSV file uploaded and processed successfully'})
+        return JsonResponse(rowCount, safe=False)
 
 
 
@@ -107,18 +108,6 @@ def award_list(request):
     return JsonResponse(awards)
 
 
-# def subject_list(data):
-#     unique_subject = data.drop_duplicates(subset=['Subject'], keep='first')
-#     print(unique_subject)
-#     subjects = []
-
-#     for i, row in unique_subject.iterrows():
-#         subject = [f"Sub{len(subjects) + 1}", row['Subject'], row['average_score']]
-#         subjects.append(subject)
-
-#     return subjects
-
-
 def subject_list(request):
     global subjects
     unique_subject = data['Subject'].unique()
@@ -128,9 +117,13 @@ def subject_list(request):
 
 
 def summary_list(request, summaryId):
+    global rowCount
     result = []
     begin = (summaryId - 1) * 5000
-    end = begin + 5000
+    if summaryId == rowCount // 5000 + 1:
+        end = rowCount
+    else:
+        end = begin + 5000
     dataList = data.iloc[begin:end]
     result = summary_process(dataList)
     

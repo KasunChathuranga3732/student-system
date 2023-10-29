@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {CountService} from "../count.service";
 
 @Component({
   selector: 'app-tables',
@@ -19,13 +20,15 @@ export class TablesComponent implements OnInit{
   summaryList:string[][] = []
   pageNumber:number = 1
   flag:boolean = true
+  pageMax:number = 1;
   Object = Object;
 
 
-  constructor(private http:HttpClient) {
+  constructor(private http:HttpClient, private count:CountService) {
   }
 
   ngOnInit() {
+    this.setPageMax();
     this.getSchoolList();
     this.getClassList();
     this.getAssessmentAreaList();
@@ -38,6 +41,16 @@ export class TablesComponent implements OnInit{
     this.getStudentList();
     setTimeout(()=>this.getSummaryList(), 2000);
 
+  }
+
+  setPageMax(){
+    let rowCount = this.count.getRowCount();
+    if(rowCount % 5000 == 0){
+      this.pageMax = rowCount/5000;
+    } else {
+      this.pageMax = rowCount/5000 + 1;
+    }
+    console.log(this.pageMax);
   }
 
   getSchoolList(){

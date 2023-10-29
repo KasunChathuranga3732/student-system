@@ -7,6 +7,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import { HomeComponent } from './home/home.component';
+import {CountService} from "./count.service";
 
 
 const route:Routes = [
@@ -33,7 +34,7 @@ const route:Routes = [
         HttpClientModule,
         FormsModule,
     ],
-  providers: [],
+  providers: [CountService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

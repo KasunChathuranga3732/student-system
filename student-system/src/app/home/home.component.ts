@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {CountService} from "../count.service";
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,7 @@ export class HomeComponent {
   fileSelect:boolean = false
   formData = new FormData();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private count:CountService) {}
 
   onFileSelected(event: any) {
     this.fileSelect = true;
@@ -20,10 +21,11 @@ export class HomeComponent {
   }
 
   uploadFile() {
-    this.http.post('http://127.0.0.1:8000/read/', this.formData)
+    this.http.post<number>('http://127.0.0.1:8000/read/', this.formData)
       .subscribe(
         (response) => {
           this.uploaded = true;
+          this.count.setRowCount(response);
         },
         (error) => {
           alert("Upload Failed")

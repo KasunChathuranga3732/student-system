@@ -213,7 +213,7 @@
     <div class="d-flex gap-4 mb-3 mt-2">
       <button *ngIf="flag" class="btn btn-primary btn-width" [disabled]="pageNumber == 1" (click)="pageNumberDecrement()">Previous</button>
       <div class="number">{{pageNumber}}</div>
-      <button *ngIf="flag" class="btn btn-primary btn-width" [disabled]="pageNumber >= 160" (click)="pageNumberIncrement()">Next</button>
+      <button *ngIf="flag" class="btn btn-primary btn-width" [disabled]="pageNumber >= pageMax" (click)="pageNumberIncrement()">Next</button>
     </div>
   </div>
 </main>
